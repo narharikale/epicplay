@@ -29,8 +29,15 @@ return (
           <div>
               <img alt="no img" src={banner.img} className="slider-img"/>
               <div className="legend" id='legend'>
-                <h1>{banner.title}</h1>
-                <button className="eplaybtn eplaybtn-primary font-size-regular">Watch Now</button>
+                <div className='legend-container'>
+                  <div>
+                    <h1 className='title'>{banner.title}</h1>
+                  </div>
+                  <div>
+                    <button className="eplaybtn eplaybtn-primary font-size-regular">Watch Now</button>
+                  </div>
+                </div>
+               
               </div>
           </div>
         )
