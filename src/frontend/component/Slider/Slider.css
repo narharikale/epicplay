@@ -1,0 +1,27 @@
+.carousel .slide #legend{
+    opacity: 1;
+    background-color:transparent;
+    border-radius: 4px;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 3.313rem;
+    left: 2.5rem;
+    width: fit-content;
+    padding: 0.938rem;
+    margin-left: 0;
+    font-size: inherit;
+}
+
+.carousel .slide .slider-img{
+    border: 0;
+    filter: opacity(0.6);
+}
+
+.legend .eplaybtn {
+    width: -moz-fit-content;
+    width: fit-content;
+    position: absolute;
+    bottom: 0;
+}
