@@ -11,10 +11,10 @@ function Header() {
 
         <div className="d-flex searchbar-container">
           <div className="searchbar">
-            <input type="text" />
             <button className="d-flex">
-              <span class="material-icons-sharp">search</span>
+              <span className="material-icons-sharp">search</span>
             </button>
+            <input type="text" />
           </div>
         </div>
         
