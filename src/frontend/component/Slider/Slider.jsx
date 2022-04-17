@@ -29,7 +29,6 @@ function Slider() {
        { videos.map((video) => {
            return(
             <SwiperSlide key={ video._id }>
-                  
                  <img key={ video._id } src={`https://i.ytimg.com/vi_webp/${video.thumbnail_id}/movieposter.webp`} alt="broken" /> 
             </SwiperSlide>
            )
