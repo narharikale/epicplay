@@ -1,54 +1,46 @@
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import './Slider.css'
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper";
+import { useVideo } from "../../context";
 
-const sliderData = [
-    {
-        title:'Spider-Man: No Way Home',
-        desc:'endegame',
-        img:'assets/banners/banner-xl-1.jpeg'
-    },
-    {
-        title:'Avengers: Endgame',
-        desc:'endegame',
-        img:'assets/banners/banner-xl-2.jpeg'
-    },
-    {
-        title:'Doctor Strange in the Multiverse of Madness',
-        desc:'endegame',
-        img:'assets/banners/banner-xl-3.jpeg'
-    }
-]
 
 function Slider() {
+  const { videos } = useVideo()
+  return (
+    <>
+    
+      <Swiper
+        slidesPerView={5}
+        spaceBetween={25}
+        slidesPerGroup={5}
+        loop={true}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        
+       { videos.map((video) => {
+           return(
+            <SwiperSlide key={ video._id }>
+                  
+                 <img key={ video._id } src={`https://i.ytimg.com/vi_webp/${video.thumbnail_id}/movieposter.webp`} alt="broken" /> 
+            </SwiperSlide>
+           )
+       })
 
-return (
-  <Carousel autoPlay showThumbs={false} >
-    { sliderData.map((banner) => {
-        return(
-          <div>
-              <img alt="no img" src={banner.img} className="slider-img"/>
-              <div className="legend" id='legend'>
-                <div className='legend-container'>
-                  <div>
-                    <h1 className='title'>{banner.title}</h1>
-                  </div>
-                  <div>
-                    <button className="eplaybtn eplaybtn-primary font-size-regular">Watch Now</button>
-                  </div>
-                </div>
-               
-              </div>
-          </div>
-        )
-
-    })
-    }
-  </Carousel>
-
-)}
+       }
+      </Swiper>
+    </>
+  );
+}
 
 
 export { Slider }
-
-
