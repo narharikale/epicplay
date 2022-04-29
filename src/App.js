@@ -1,13 +1,14 @@
 import './App.css';
 import { Header} from './frontend/component';
+import { Routers } from './frontend/Router/Router';
 import { Home } from './frontend/screen';
 
 
 function App() {
   return (
-    <div className="App"  id='App' >
+    <div className="App" id='App'>
         <Header/>
-        <Home/>
+        <Routers/>
     </div>
   );
 }
