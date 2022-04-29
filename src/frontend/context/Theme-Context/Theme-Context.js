@@ -1,17 +1,12 @@
 
 import { createContext, useState , useLayoutEffect , useContext} from "react";
 
-
 const themeContext = createContext(null);
-
-
 
 
 function ThemeProvider( {children} ) {
     const [theme , setTheme] = useState('dark');
     
-
-
     useLayoutEffect(() => {
     
          if(theme === 'light'){
