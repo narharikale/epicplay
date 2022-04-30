@@ -18,8 +18,6 @@ function VideoProvider( {children} ) {
             }
         })();
        
-    } , [])
-    useEffect( () => {
         (async function getCategories(){
             try{
                 const { data } = await axios.get('/api/categories')
@@ -28,7 +26,9 @@ function VideoProvider( {children} ) {
                 console.error(error)
             }
         })()
+
     } , [])
+   
     
     return(
         <videoContext.Provider value={{ videos , categories  , setVideos}}>
