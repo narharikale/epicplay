@@ -6,7 +6,7 @@ import { AUTH_TOKEN } from '../../constants/'
 import { axiosService } from "../../services/axiosService";
 
 
-function Signin() {
+export  function Signin() {
     
      
     const { isAuth , setIsAuth , authErr } = useAuth();
@@ -89,4 +89,3 @@ function Signin() {
     );
 }
 
-export { Signin }
