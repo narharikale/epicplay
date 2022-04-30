@@ -1,9 +1,9 @@
 import { Link , useNavigate , useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../context";
+import { useAuth } from "../context"
 import './Auth.css'
-import { AUTH_TOKEN } from "../../constants";
-import { axiosService } from "../../services/axiosService";
+import { AUTH_TOKEN } from "../constants";
+import { axiosService } from "../services/axiosService";
 
 function Signup() {
     
@@ -115,4 +115,4 @@ function Signup() {
      );
 }
 
-export  { Signup } ;
+export { Signup } ;

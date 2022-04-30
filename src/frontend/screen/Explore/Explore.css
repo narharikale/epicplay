@@ -1,0 +1,30 @@
+.explore-main-container{
+    display: flex;
+    
+}
+.explore-container{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.categories-container{
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    position: sticky;
+    top: 4.2rem;
+    background: var(--color-background);
+    z-index: 1;
+}
+.categories-container .eplaybtn{
+    width:fit-content;
+    border-radius: .8rem;
+    margin: 0 12px 12px 0;
+}
+
+.videos-container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+}

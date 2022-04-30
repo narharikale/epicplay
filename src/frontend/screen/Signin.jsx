@@ -1,12 +1,12 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import './Auth.css';
-import { useAuth } from '../../context'
+import { useAuth } from '../context'
 import { useState } from "react";
-import { AUTH_TOKEN } from '../../constants/'
-import { axiosService } from "../../services/axiosService";
+import { AUTH_TOKEN } from '../constants/auth-constants'
+import { axiosService } from "../services/axiosService";
 
 
-function Signin() {
+ function Signin() {
     
      
     const { isAuth , setIsAuth , authErr } = useAuth();
@@ -20,12 +20,12 @@ function Signin() {
     let from = location.state?.from?.pathname || "/";
 
     const signinHandler = async( email , password ) => {
-        const response = await axiosService('post' , '/api/auth/login', {
+        const { data } = await axiosService('post' , '/api/auth/login', {
             email,
             password
         })
-        localStorage.setItem(AUTH_TOKEN ,  response.data.encodedToken);
-        setIsAuth({...isAuth , status:true ,  token:response.data.encodedToken});
+        localStorage.setItem(AUTH_TOKEN ,  data.encodedToken);
+        setIsAuth({...isAuth , status:true ,  token:data.encodedToken});
         navigate(from, { replace: true });
     }
     

@@ -15,7 +15,7 @@ function Header(){
   const location = useLocation();
   
   return (
-    <div>
+    <div className="header-main">
       <nav className="header header-container">
         <div className="logo">
           <Logo />

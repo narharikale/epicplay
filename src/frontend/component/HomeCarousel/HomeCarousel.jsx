@@ -1,6 +1,7 @@
 import './HomeCarousel.css'
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link } from 'react-router-dom';
 
 const sliderData = [
     {
@@ -37,7 +38,7 @@ return (
                     <h1 className='title'>{banner.title}</h1>
                   </div>
                   <div>
-                    <button className="eplaybtn eplaybtn-primary font-size-regular">Watch Now</button>
+                    <Link to='/explore' className="eplaybtn eplaybtn-primary font-size-regular">Watch Now</Link>
                   </div>
                 </div>
               </div>

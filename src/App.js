@@ -1,5 +1,5 @@
 import './App.css';
-import { Header} from './frontend/component';
+import { Header } from './frontend/component';
 import { Routers } from './frontend/Router/Router';
 
 
