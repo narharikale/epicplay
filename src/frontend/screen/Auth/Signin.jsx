@@ -20,12 +20,12 @@ function Signin() {
     let from = location.state?.from?.pathname || "/";
 
     const signinHandler = async( email , password ) => {
-        const response = await axiosService('post' , '/api/auth/login', {
+        const { data } = await axiosService('post' , '/api/auth/login', {
             email,
             password
         })
-        localStorage.setItem(AUTH_TOKEN ,  response.data.encodedToken);
-        setIsAuth({...isAuth , status:true ,  token:response.data.encodedToken});
+        localStorage.setItem(AUTH_TOKEN ,  data.encodedToken);
+        setIsAuth({...isAuth , status:true ,  token:data.encodedToken});
         navigate(from, { replace: true });
     }
     

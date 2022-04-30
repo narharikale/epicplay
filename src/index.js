@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { AuthProvider, ThemeProvider, VideoProvider } from "./frontend/context";
+import { AuthProvider, FilterProvider, ThemeProvider, VideoProvider } from "./frontend/context";
 import { makeServer } from "./server";
 
 // Call make Server
@@ -14,10 +14,12 @@ root.render(
       <ThemeProvider>
         <AuthProvider>
           <VideoProvider>
-            <App />
+            <FilterProvider>
+                <App />
+            </FilterProvider>
           </VideoProvider>
         </AuthProvider>
       </ThemeProvider>
-    </BrowserRouter>  
+    </BrowserRouter>
   </React.StrictMode>
 );

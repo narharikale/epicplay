@@ -1,0 +1,42 @@
+.sidebar-list{
+    min-width:12.5rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.sidebar-container{
+    position: sticky;
+    top: 4.2rem;
+}
+.sidebar-list-item{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.875rem;
+}
+
+.sidebar-list-item:hover{
+    background-color: var(--color-background-accent-1);
+}
+
+
+@media screen and (max-width: 40em){
+    
+    .sidebar-list{
+        position:fixed;
+        top: 4rem;
+        z-index: 1 ;
+        background-color: var(--color-background);
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64em) {
+    
+}
+
+@media  screen and (min-width: 64.063em) and (max-width: 90em) {
+   
+}
