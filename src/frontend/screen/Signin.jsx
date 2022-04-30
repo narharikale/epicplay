@@ -1,12 +1,12 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import './Auth.css';
-import { useAuth } from '../../context'
+import { useAuth } from '../context'
 import { useState } from "react";
-import { AUTH_TOKEN } from '../../constants/'
-import { axiosService } from "../../services/axiosService";
+import { AUTH_TOKEN } from '../constants/auth-constants'
+import { axiosService } from "../services/axiosService";
 
 
-export  function Signin() {
+ function Signin() {
     
      
     const { isAuth , setIsAuth , authErr } = useAuth();
@@ -89,3 +89,4 @@ export  function Signin() {
     );
 }
 
+export { Signin }
