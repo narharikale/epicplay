@@ -2,12 +2,12 @@ import { createContext, useContext , useEffect} from "react";
 import axios from 'axios';
 import { useState } from "react";
 
-const videoContext = createContext();
+const videoContext = createContext(null);
 
-function VideoProvider({children}) {
+function VideoProvider( {children} ) {
 
-    const [videos , setVideos] = useState([])
-    const [categories , setCategories] = useState([])
+    const [videos , setVideos] = useState([]);
+    const [categories , setCategories] = useState([]);
     useEffect(()=>{
         (async function getvideos() {
             try{
@@ -38,4 +38,5 @@ function VideoProvider({children}) {
 }
 
 const useVideo = () => useContext(videoContext);
+
 export { VideoProvider , useVideo }
