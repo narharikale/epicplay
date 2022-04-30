@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react"
 import { useState } from "react";
-import { AUTH_TOKEN } from '../../constants';
+import { AUTH_TOKEN } from '../constants';
 const AuthContext = createContext();
 
 function AuthProvider({ children }){
