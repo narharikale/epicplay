@@ -3,7 +3,7 @@
     
 }
 .explore-container{
-    padding: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -27,4 +27,14 @@
     width: 100%;
     flex-wrap: wrap;
     gap: 10px;
+    
+}
+
+@media screen and (max-width: 40em){
+    
+    .videos-container{
+        justify-content: center;
+    }
+    
+
 }

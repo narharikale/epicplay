@@ -1,12 +1,14 @@
 import './HorizontalVideoCard.css'
 import { numFormatter } from '../../utils/numFormatter';
 import { timeFormatter } from '../../utils/timeFormatter';
+import { useNavigate } from 'react-router-dom';
 function HorizontalVideoCard ({ video }) {
 
   const { _id , title , channel , channelAvtar , views , createdAt } = video
-
+  const navigate = useNavigate();
+  
   return(
-      <div className='video-card'>
+      <div className='video-card' onClick={() => navigate(`/explore/${_id}`)} >
         <img src={`https://img.youtube.com/vi/${_id}/maxresdefault.jpg`} alt="img" height='100%' width='100%'/>
         <div className='channel-container p-relative'>
           <img src={ channelAvtar } alt="" className='br-round channel-img' />

@@ -11,13 +11,13 @@ function VideoProvider( {children} ) {
     useEffect(()=>{
         (async function getvideos() {
             try{
-                const { data } = await axios.get('api/videos') 
+                const { data } = await axios.get('/api/videos') 
                 setVideos(data.videos)
             }catch (error){
                 console.error(error)
             }
         })();
-       
+
         (async function getCategories(){
             try{
                 const { data } = await axios.get('/api/categories')
@@ -28,6 +28,9 @@ function VideoProvider( {children} ) {
         })()
 
     } , [])
+
+
+    
    
     
     return(

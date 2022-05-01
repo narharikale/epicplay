@@ -9,7 +9,7 @@ function timeFormatter(date) {
     }
     interval = seconds / 2592000;
     if (interval > 1) {
-      return Math.floor(interval) ? `${Math.floor(interval)} Months` :`${Math.floor(interval)} Month` ;
+      return Math.floor(interval) + " Month" ;
     }
     interval = seconds / 86400;
     if (interval > 1) {

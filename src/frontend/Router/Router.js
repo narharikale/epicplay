@@ -1,15 +1,15 @@
 import { Navigate, Route, Routes , } from "react-router-dom";
 import Mockman from 'mockman-js';
-import { Home , Signin , Signup , Explore, NotFound } from "../screen";
+import { Home , Signin , Signup , Explore, NotFound, SingleVideo } from "../screen";
 import { useAuth } from '../context'
 
 function Routers(){
     const { isAuth } = useAuth(); 
     return(
         <Routes>
-            
             <Route path="/" element={<Home/>}/>
             <Route path="/explore" element={<Explore/>}/>
+            <Route path="/explore/:id" element={<SingleVideo/>} />
             { !isAuth.status &&  (
                 <>
                     <Route path="/signin" element={<Signin/>}/>

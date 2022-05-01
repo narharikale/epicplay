@@ -1,5 +1,9 @@
 .video-card{
     flex-basis: 16.438rem;
+    cursor: pointer;
+}
+.video-card:hover{
+    background-color: var(--color-background-accent-1);
 }
 .video-card-title{
     overflow: hidden;

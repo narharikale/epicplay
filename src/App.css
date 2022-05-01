@@ -30,6 +30,9 @@ button, input, textarea {
     font: inherit;
     outline: none;
 }
+button{
+    cursor: pointer;
+}
 
 #App.App{
     background-color: var(--color-background);
