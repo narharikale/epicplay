@@ -3,3 +3,4 @@ export { Signin } from "./Signin";
 export { Signup } from "./Signup";
 export { Explore } from "./Explore/Explore";
 export { NotFound } from "./NotFound/NotFound";
+export { SingleVideo } from "./SingleVideo/SingleVideo"

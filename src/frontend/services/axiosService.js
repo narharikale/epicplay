@@ -13,9 +13,8 @@ const axiosService = async(method , url , body ) => {
                 const resp = await axios[method]( `${url}` , body)
                 return resp;
             default:
-                return
+                return;
         }
-       
     }catch(error){
         console.error(error)
     }
