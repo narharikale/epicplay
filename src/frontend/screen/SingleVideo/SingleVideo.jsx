@@ -69,7 +69,7 @@ function SingleVideo(){
                     <div className='video-recomendation-list-container'>
                         { videos.map((video) => {
                             return (
-                                <SmallVideoCard video={video}/>
+                                <SmallVideoCard key={video._id} video={video}/>
                             )
                         })
                         }
