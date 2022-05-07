@@ -26,7 +26,7 @@ const combinedService = async(method , url , token , video ) => {
                 return data;
             }
             case "delete" : {
-                const { data } = await axios[method](`${url}` ,
+                const { data } = await axios[method](`${url}/${video._id}` ,
                     { 
                         headers:{
                             authorization:token 

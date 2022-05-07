@@ -34,7 +34,10 @@ function SingleVideo(){
         const  data  =  await combinedService("post" , "/api/user/watchlater" , isAuth.token , video );
         setWatchLaterData(data.watchlater);
     }
-
+    const removeFromWatchLater = async() => {
+        const  data  =  await combinedService("delete" , "/api/user/watchlater" , isAuth.token , video );
+        setWatchLaterData(data.watchlater);
+    }
     return (
         <div className="explore-main-container">
             <div className="explore-side-container">
@@ -66,14 +69,14 @@ function SingleVideo(){
                                         Like</div> 
 
                                     { watchLaterData.find( singlevideo => singlevideo._id === id) ? 
-                                        <div className='single-video-title-icons' onClick={ saveToWatchLater }>
-                                            <span className="material-icons-outlined">watch_later</span>
-                                            Watch Later
-                                        </div>
-                                        :
-                                        <div className='single-video-title-icons' onClick={ saveToWatchLater }>
+                                        <div className='single-video-title-icons' onClick={ removeFromWatchLater }>
                                             <span className="material-icons">watch_later</span>
                                             Remove
+                                        </div>
+                                        :
+                                        <div className='single-video-title-icons' onClick={  saveToWatchLater }>
+                                            <span className="material-icons-outlined">watch_later</span>
+                                            Watch Later
                                         </div>
                                     }
                                      

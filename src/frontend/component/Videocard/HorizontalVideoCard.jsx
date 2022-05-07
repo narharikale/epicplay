@@ -19,6 +19,11 @@ function HorizontalVideoCard ({ video }) {
       const  data  =  await combinedService("post" , "/api/user/watchlater" , isAuth.token , video );
       setWatchLaterData(data.watchlater);
   } 
+  const removeFromWatchLater = async(e) => {
+    e.stopPropagation()
+    const  data  =  await combinedService("delete" , "/api/user/watchlater" , isAuth.token , video );
+    setWatchLaterData(data.watchlater);
+} 
   return(
       <div className='video-card' onClick={() => navigate(`/explore/${_id}`)} >
         <img src={`https://img.youtube.com/vi/${_id}/maxresdefault.jpg`} alt="img" height='100%' width='100%'/>
@@ -40,7 +45,7 @@ function HorizontalVideoCard ({ video }) {
         { moreModal && 
           <div className='more-modal'>
             { watchLaterData.find( singlevideo => singlevideo._id === _id) ? 
-              <div className='more-modal-item' onClick={ (e) =>  saveToWatchLater(e) }>
+              <div className='more-modal-item' onClick={ (e) =>  removeFromWatchLater(e) }>
                 <span className='material-icons'>watch_later</span>
                 Remove from Watch Later
               </div> : 
