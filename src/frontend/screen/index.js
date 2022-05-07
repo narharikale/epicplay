@@ -3,4 +3,7 @@ export { Signin } from "./Signin";
 export { Signup } from "./Signup";
 export { Explore } from "./Explore/Explore";
 export { NotFound } from "./NotFound/NotFound";
-export { SingleVideo } from "./SingleVideo/SingleVideo"
+export { SingleVideo } from "./SingleVideo/SingleVideo";
+export { WatchLater } from "./watchlater/WatchLater";
+export { LikedVideos } from "./likedvideos/LikedVideos";
+export { History } from "./history/History";

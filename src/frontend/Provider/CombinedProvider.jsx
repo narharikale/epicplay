@@ -1,4 +1,4 @@
-import { AuthProvider , ThemeProvider , VideoProvider , FilterProvider } from "../context";
+import { AuthProvider , ThemeProvider , VideoProvider , FilterProvider, WatchLaterProvider } from "../context";
 import { BrowserRouter } from 'react-router-dom';
 
 function CombinedProvider ({ children }) {
@@ -8,7 +8,9 @@ function CombinedProvider ({ children }) {
                 <AuthProvider>
                     <VideoProvider> 
                         <FilterProvider>
-                            { children }
+                            <WatchLaterProvider>
+                                { children }
+                            </WatchLaterProvider>
                         </FilterProvider>
                     </VideoProvider>
                 </AuthProvider>

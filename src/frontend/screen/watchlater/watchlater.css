@@ -1,0 +1,39 @@
+.small-video-img{
+    width: 10.625rem;
+}
+
+.morepages-container{
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem;    
+}
+.morepages-video{
+    max-width: 30rem;
+    position: relative;
+}
+
+.morepages-list-container{
+    flex-grow: 1;
+}
+.morepages-title{
+    background-color: #3a3b3c6e;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: .5rem;
+}
+
+.morepages-title div {
+    gap: 6px;
+}
+
+
+@media screen and (max-width: 64em){
+    
+    .morepages-container{
+        flex-direction: column;
+    }
+    
+
+}
