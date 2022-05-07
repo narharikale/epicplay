@@ -2,7 +2,8 @@ import { Navigate, Route, Routes , } from "react-router-dom";
 import Mockman from 'mockman-js';
 import { Home , Signin , Signup , Explore, NotFound, SingleVideo, WatchLater, LikedVideos, History } from "../screen";
 import { useAuth } from '../context'
-import { PrivateRoute } from "../component";
+import { RequireAuth } from "../component";
+
 
 
 function Routers(){
@@ -19,19 +20,20 @@ function Routers(){
                 </>
             )}
             <Route path="/watchlater" element={ 
-                <PrivateRoute>
+                <RequireAuth>
                     <WatchLater/>
-                </PrivateRoute> 
+                </RequireAuth> 
             }/>
+            
             <Route path="/likedvideos" element={ 
-                <PrivateRoute>
+                <RequireAuth>
                     <LikedVideos/>
-                </PrivateRoute> 
+                </RequireAuth> 
             }/>
             <Route path="/history" element={ 
-                <PrivateRoute>
+                <RequireAuth>
                     <History/>
-                </PrivateRoute> 
+                </RequireAuth> 
             }/>
             
 
