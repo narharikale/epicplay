@@ -5,15 +5,19 @@ import "./singlevideo.css";
 import ReactPlayer from "react-player/youtube";
 import { useEffect , useState } from 'react';
 import axios from "axios"
-import { useVideo } from '../../context';
+import { useAuth, useVideo, useWatchLater } from '../../context';
 import { numFormatter } from '../../utils/numFormatter';
 import { timeFormatter } from '../../utils/timeFormatter';
+import { combinedService } from '../../services/combinedServices';
 
 function SingleVideo(){
-    const [video , setVideo] = useState("")
+    const [video , setVideo] = useState("");
     const { title , channel , channelAvtar , views , createdAt , description} = video ;
     const { id } = useParams();
-    const { videos } = useVideo()
+    const { videos } = useVideo();
+    const { watchLaterData , setWatchLaterData }  = useWatchLater();
+    const { isAuth } = useAuth();
+
     useEffect(() => {
         (async () => {
             try{
@@ -24,6 +28,12 @@ function SingleVideo(){
             }
         })();
       }, [id]);
+    
+      
+    const saveToWatchLater = async() => {
+        const  data  =  await combinedService("post" , "/api/user/watchlater" , isAuth.token , video );
+        setWatchLaterData(data.watchlater);
+    }
 
     return (
         <div className="explore-main-container">
@@ -51,9 +61,25 @@ function SingleVideo(){
                                     {  numFormatter(views) } | { timeFormatter(Date.parse(createdAt)) } ago
                                 </div>
                                 <div className='d-flex gap-1 '>
-                                    <div className='single-video-title-icons'><span className='material-icons-outlined'>thumb_up</span> Like</div> 
-                                    <div className='single-video-title-icons'><span className='material-icons-outlined'>watch_later</span> Watch Later</div> 
-                                    <div className='single-video-title-icons'><span className='material-icons-outlined'>playlist_add</span> Add to Playlist</div> 
+                                    <div className='single-video-title-icons'>
+                                        <span className="material-icons-outlined">thumb_up</span> 
+                                        Like</div> 
+
+                                    { watchLaterData.find( singlevideo => singlevideo._id === id) ? 
+                                        <div className='single-video-title-icons' onClick={ saveToWatchLater }>
+                                            <span className="material-icons-outlined">watch_later</span>
+                                            Watch Later
+                                        </div>
+                                        :
+                                        <div className='single-video-title-icons' onClick={ saveToWatchLater }>
+                                            <span className="material-icons">watch_later</span>
+                                            Remove
+                                        </div>
+                                    }
+                                     
+                                    <div className='single-video-title-icons'>
+                                        <span className='material-icons-outlined'>playlist_add</span>
+                                        Add to Playlist</div> 
                                 </div>
                             </div>
                             <div className='seperator'/>

@@ -10,7 +10,7 @@ function HorizontalVideoCard ({ video }) {
   const { _id , title , channel , channelAvtar , views , createdAt } = video ;
   const { isAuth }  = useAuth();
   const navigate = useNavigate();
-  const { setWatchLaterData }  = useWatchLater()
+  const { watchLaterData , setWatchLaterData }  = useWatchLater()
   const [ moreModal , setMoreModal ] = useState(false);
 
   
@@ -26,7 +26,7 @@ function HorizontalVideoCard ({ video }) {
           <img src={ channelAvtar } alt="channel-avtr" className='br-round channel-img' />
           <div className='w-100-per'>
             <div className='title-container'>
-              <h5 className='video-card-title'> {title} </h5>
+              <h5 className='video-card-title'> { title } </h5>
             </div>
             <p className='video-card-channel-title'>{ channel }</p>
             <div className='video-card-channel-title'>{  numFormatter(views) } | { timeFormatter(Date.parse(createdAt)) } ago</div>
@@ -39,10 +39,18 @@ function HorizontalVideoCard ({ video }) {
         </div>
         { moreModal && 
           <div className='more-modal'>
-            <div className='more-modal-item' onClick={ (e) =>  saveToWatchLater(e) }>
-              <span className='material-icons-outlined'>watch_later</span>
+            { watchLaterData.find( singlevideo => singlevideo._id === _id) ? 
+              <div className='more-modal-item' onClick={ (e) =>  saveToWatchLater(e) }>
+                <span className='material-icons'>watch_later</span>
+                Remove from Watch Later
+              </div> : 
+              <div className='more-modal-item' onClick={ (e) =>  saveToWatchLater(e) }>
+                <span className='material-icons-outlined'>watch_later</span>
                 Save to Watch Later
-            </div>
+              </div>
+
+            }
+            
             <div className='more-modal-item'>
               <span className="material-icons-outlined">playlist_add</span>
                 Add to Playlist
