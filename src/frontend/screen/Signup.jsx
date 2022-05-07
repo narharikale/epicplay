@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../context"
 import './Auth.css'
 import { AUTH_TOKEN } from "../constants";
-import { axiosService } from "../services/axiosService";
+import { authService } from "../services/authService";
 
 function Signup() {
     
@@ -21,7 +21,7 @@ function Signup() {
     });
     const [isPasswordVisible , setisPasswordVisible ] = useState(false);
     const signUpHandler = async( { firstName , lastName , email , password ,confirmPassword } ) => {
-        const response = await axiosService('post' , '/api/auth/signup', {
+        const response = await authService('post' , '/api/auth/signup', {
             email,
             password,
             firstName,
