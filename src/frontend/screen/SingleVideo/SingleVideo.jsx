@@ -5,7 +5,7 @@ import "./singlevideo.css";
 import ReactPlayer from "react-player/youtube";
 import { useEffect , useState } from 'react';
 import axios from "axios"
-import { useAuth, useLikes, useVideo, useWatchLater } from '../../context';
+import { useAuth, useHistory, useLikes, useVideo, useWatchLater } from '../../context';
 import { numFormatter } from '../../utils/numFormatter';
 import { timeFormatter } from '../../utils/timeFormatter';
 import { combinedService } from '../../services/combinedServices';
@@ -17,9 +17,9 @@ function SingleVideo(){
     const { videos } = useVideo();
     const { watchLaterData , setWatchLaterData }  = useWatchLater();
     const { likesData , setLikesData } = useLikes();
+    const { setHistoryData }  = useHistory();
     const { isAuth } = useAuth();
-    console.log(watchLaterData , " watchlater")
-    console.log(likesData)
+
     useEffect(() => {
         (async () => {
             try{
@@ -49,6 +49,11 @@ function SingleVideo(){
         setLikesData(data.likes);
     }
 
+    const addToHistory = async() =>  {
+        const  data  =  await combinedService("post" , "/api/user/history" , isAuth.token , video );
+        setHistoryData(data.history);
+    }
+
     return (
         <div className="explore-main-container">
             <div className="explore-side-container">
@@ -64,6 +69,7 @@ function SingleVideo(){
                                 height="100%"
                                 controls={true}
                                 url={`http://www.youtube.com/watch?v=${video._id}`}
+                                onStart = { addToHistory }
                             />
                         </div>
                         <div className='video-body'>
@@ -75,7 +81,6 @@ function SingleVideo(){
                                     {  numFormatter(views) } | { timeFormatter(Date.parse(createdAt)) } ago
                                 </div>
                                 <div className='d-flex gap-1 '>
-                                    
 
                                     { likesData.find( singlevideo => singlevideo._id === id) ? 
                                         <div className='single-video-title-icons' onClick={ removeFromLikes }>
