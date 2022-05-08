@@ -5,7 +5,7 @@ import "./singlevideo.css";
 import ReactPlayer from "react-player/youtube";
 import { useEffect , useState } from 'react';
 import axios from "axios"
-import { useAuth, useLikes, useVideo, useWatchLater } from '../../context';
+import { useAuth, useHistory, useLikes, useVideo, useWatchLater } from '../../context';
 import { numFormatter } from '../../utils/numFormatter';
 import { timeFormatter } from '../../utils/timeFormatter';
 import { combinedService } from '../../services/combinedServices';
@@ -17,6 +17,7 @@ function SingleVideo(){
     const { videos } = useVideo();
     const { watchLaterData , setWatchLaterData }  = useWatchLater();
     const { likesData , setLikesData } = useLikes();
+    const { setHistoryData }  = useHistory();
     const { isAuth } = useAuth();
 
     useEffect(() => {
@@ -50,8 +51,9 @@ function SingleVideo(){
 
     const addToHistory = async() =>  {
         const  data  =  await combinedService("post" , "/api/user/history" , isAuth.token , video );
-        setLikesData(data.likes);
+        setHistoryData(data.history);
     }
+
     return (
         <div className="explore-main-container">
             <div className="explore-side-container">
