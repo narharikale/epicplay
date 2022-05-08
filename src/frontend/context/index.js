@@ -4,3 +4,4 @@ export { FilterProvider , useFilter } from "./filter-context";
 export { VideoProvider , useVideo } from "./videos-context";
 export { WatchLaterProvider , useWatchLater } from "./watchlater-context";
 export { LikesProvider , useLikes } from "./likes-context";
+export { HistoryProvider , useHistory } from "./history-context";

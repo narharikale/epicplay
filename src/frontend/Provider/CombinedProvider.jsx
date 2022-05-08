@@ -1,6 +1,6 @@
-import { AuthProvider , ThemeProvider , VideoProvider , FilterProvider, WatchLaterProvider } from "../context";
+import { AuthProvider , ThemeProvider , VideoProvider , FilterProvider,LikesProvider, WatchLaterProvider, HistoryProvider } from "../context";
 import { BrowserRouter } from 'react-router-dom';
-import { LikesProvider } from "../context/likes-context";
+
 
 function CombinedProvider ({ children }) {
     return (
@@ -11,7 +11,9 @@ function CombinedProvider ({ children }) {
                         <FilterProvider>
                             <WatchLaterProvider>
                                 <LikesProvider>
-                                    { children }
+                                    <HistoryProvider>
+                                        { children }
+                                    </HistoryProvider>
                                 </LikesProvider>
                            </WatchLaterProvider>
                         </FilterProvider>
