@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { numFormatter } from "../../utils/numFormatter"
-import { timeFormatter } from "../../utils/timeFormatter"
+import { numFormatter } from "../../utils/numFormatter";
+import { timeFormatter } from "../../utils/timeFormatter";
 import "./smallvideo.css";
 
 
@@ -20,7 +20,6 @@ function SmallVideoCard({video}){
                 <p className='video-card-channel-title'>{ channel }</p>
                 <div className='video-card-channel-title'>{  numFormatter(views) } | { timeFormatter(Date.parse(createdAt)) } ago</div>
             </div>
-          
       </div>
     )
 }

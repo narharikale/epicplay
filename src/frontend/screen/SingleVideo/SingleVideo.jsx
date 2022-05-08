@@ -5,7 +5,7 @@ import "./singlevideo.css";
 import ReactPlayer from "react-player/youtube";
 import { useEffect , useState } from 'react';
 import axios from "axios"
-import { useAuth, useVideo, useWatchLater } from '../../context';
+import { useAuth, useLikes, useVideo, useWatchLater } from '../../context';
 import { numFormatter } from '../../utils/numFormatter';
 import { timeFormatter } from '../../utils/timeFormatter';
 import { combinedService } from '../../services/combinedServices';
@@ -16,8 +16,10 @@ function SingleVideo(){
     const { id } = useParams();
     const { videos } = useVideo();
     const { watchLaterData , setWatchLaterData }  = useWatchLater();
+    const { likesData , setLikesData } = useLikes();
     const { isAuth } = useAuth();
-
+    console.log(watchLaterData , " watchlater")
+    console.log(likesData)
     useEffect(() => {
         (async () => {
             try{
@@ -38,6 +40,15 @@ function SingleVideo(){
         const  data  =  await combinedService("delete" , "/api/user/watchlater" , isAuth.token , video );
         setWatchLaterData(data.watchlater);
     }
+    const addToLikes = async() => {
+        const  data  =  await combinedService("post" , "/api/user/likes" , isAuth.token , video );
+        setLikesData(data.likes);
+    }
+    const removeFromLikes = async() => {
+        const  data  =  await combinedService("delete" , "/api/user/likes" , isAuth.token , video );
+        setLikesData(data.likes);
+    }
+
     return (
         <div className="explore-main-container">
             <div className="explore-side-container">
@@ -64,9 +75,19 @@ function SingleVideo(){
                                     {  numFormatter(views) } | { timeFormatter(Date.parse(createdAt)) } ago
                                 </div>
                                 <div className='d-flex gap-1 '>
-                                    <div className='single-video-title-icons'>
-                                        <span className="material-icons-outlined">thumb_up</span> 
-                                        Like</div> 
+                                    
+
+                                    { likesData.find( singlevideo => singlevideo._id === id) ? 
+                                        <div className='single-video-title-icons' onClick={ removeFromLikes }>
+                                            <span className="material-icons">thumb_up</span> 
+                                            Unlike
+                                        </div>
+                                        :
+                                        <div className='single-video-title-icons' onClick={  addToLikes }>
+                                            <span className="material-icons-outlined">thumb_up</span> 
+                                            Like
+                                        </div>
+                                    }
 
                                     { watchLaterData.find( singlevideo => singlevideo._id === id) ? 
                                         <div className='single-video-title-icons' onClick={ removeFromWatchLater }>
@@ -82,7 +103,8 @@ function SingleVideo(){
                                      
                                     <div className='single-video-title-icons'>
                                         <span className='material-icons-outlined'>playlist_add</span>
-                                        Add to Playlist</div> 
+                                        Add to Playlist
+                                    </div> 
                                 </div>
                             </div>
                             <div className='seperator'/>
