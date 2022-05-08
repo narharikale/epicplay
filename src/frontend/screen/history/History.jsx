@@ -10,7 +10,6 @@ function History(){
 
     const removeAllHistory = async() => {
         const { data } = await axios.delete("/api/user/history/all" , { headers: { authorization : isAuth.token }}  );
-        console.log(data);
         setHistoryData(data.history);
     }
 
