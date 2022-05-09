@@ -1,0 +1,39 @@
+.playlist-modal-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #18191abd;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.playlist-modal-content{
+    min-width: 12.5rem;
+    max-width: 20rem;
+    background-color: var(--color-background-accent-2);
+    overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 4px;
+    outline: none;
+    padding: 1.2rem;
+
+}
+.playlist-modal-body{
+    padding:.5rem 0rem;
+}
+.playlist-modal-footer{
+  padding: .5rem 0rem;
+}
+
+.playlist-modal-footer button {
+    margin-top: .5rem;
+}
+
+.devider{
+    border: 1px solid #757575;
+    outline: 0;
+}

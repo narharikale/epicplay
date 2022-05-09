@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Sidebar, SmallVideoCard } from '../../component';
+import { PlaylistModal, Sidebar, SmallVideoCard } from '../../component';
 import '../Explore/Explore.css';
 import "./singlevideo.css";
 import ReactPlayer from "react-player/youtube";
@@ -55,6 +55,7 @@ function SingleVideo(){
     }
 
     return (
+        <>
         <div className="explore-main-container">
             <div className="explore-side-container">
                 <Sidebar/>
@@ -109,6 +110,7 @@ function SingleVideo(){
                                     <div className='single-video-title-icons'>
                                         <span className='material-icons-outlined'>playlist_add</span>
                                         Add to Playlist
+                                        
                                     </div> 
                                 </div>
                             </div>
@@ -132,7 +134,10 @@ function SingleVideo(){
                     </div>
                 </div>
             </div>
+            
         </div>
+        <PlaylistModal/>
+        </>
     )
 }
 

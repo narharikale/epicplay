@@ -5,4 +5,5 @@ export { Slider } from './Slider/Slider';
 export { RequireAuth } from './RequireAuth/RequireAuth';
 export { Sidebar } from './Sidebar/Sidebar';
 export { HorizontalVideoCard } from './Videocard/HorizontalVideoCard';
-export { SmallVideoCard } from "./SmallVideoCard/SmallVideoCard"
+export { SmallVideoCard } from "./SmallVideoCard/SmallVideoCard";
+export { PlaylistModal } from "./PlaylistModal/PlaylistModal";
