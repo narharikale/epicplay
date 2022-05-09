@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const createPlaylistService = async (token, newplaylist) => {
-    console.log(token , newplaylist)
     try {
         const response = await axios.post(
             "/api/user/playlists",

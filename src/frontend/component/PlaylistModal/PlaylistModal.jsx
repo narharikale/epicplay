@@ -1,21 +1,24 @@
 import './playlistModal.css'
 import { useState } from 'react';
-import { useAuth } from '../../context';
+import { useAuth, usePlaylists } from '../../context';
 import { createPlaylistService } from '../../services/playlistServices/createPlaylistService';
+import { SET_PLAYLISTS } from '../../constants';
 
 function PlaylistModal({modal , setmodal }){
 
     const [ newPlaylist , setNewPlaylist ] = useState({title:"" , desc:""});
-    const { isAuth } = useAuth()
+    const { isAuth } = useAuth();
+    const { playlistState , playlistDispatch } = usePlaylists();
 
     const createNewPlaylist  = async() => {
         const { data } = await createPlaylistService(isAuth.token , newPlaylist) ;
-        
+        playlistDispatch({ type:SET_PLAYLISTS , payload: data.playlists } )
     }
+
     return (
         <div className="playlist-modal-container">
             <div className='playlist-modal-content'>
-                <div className='d-flex w-100-per justify-between'>
+                <div className='playlist-modal-header'>
                     <div> Save to...</div>
                     <button onClick={ () => setmodal(!modal)}>
                         <span className='material-icons-sharp font-size-sm'>clear</span> 
@@ -23,8 +26,18 @@ function PlaylistModal({modal , setmodal }){
                     
                 </div>
                 <hr className='devider'/>
+           
                 <div className='playlist-modal-body'>
-                    My Plalistss
+                    { playlistState && playlistState.map( (playlist) => {
+                        return (
+                            <div key={playlist._id}>
+                                <input type='checkbox' id={playlist._id} />
+                                <label htmlFor={playlist._id}> { playlist.title }</label>
+                            </div>
+                            
+                        )
+                        })
+                    }
                 </div>
                 <hr className='devider'/>
                 <div className='playlist-modal-footer'>
