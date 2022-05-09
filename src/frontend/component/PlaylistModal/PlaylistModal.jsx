@@ -3,9 +3,8 @@ import { useState } from 'react';
 import { useAuth } from '../../context';
 import { createPlaylistService } from '../../services/playlistServices/createPlaylistService';
 
-function PlaylistModal(){
+function PlaylistModal({modal , setmodal }){
 
-    
     const [ newPlaylist , setNewPlaylist ] = useState({title:"" , desc:""});
     const { isAuth } = useAuth()
 
@@ -18,7 +17,7 @@ function PlaylistModal(){
             <div className='playlist-modal-content'>
                 <div className='d-flex w-100-per justify-between'>
                     <div> Save to...</div>
-                    <button>
+                    <button onClick={ () => setmodal(!modal)}>
                         <span className='material-icons-sharp font-size-sm'>clear</span> 
                     </button>
                     

@@ -12,6 +12,7 @@ import { combinedService } from '../../services/combinedServices';
 
 function SingleVideo(){
     const [video , setVideo] = useState("");
+    const [modal , setModal] = useState(false);
     const { title , channel , channelAvtar , views , createdAt , description} = video ;
     const { id } = useParams();
     const { videos } = useVideo();
@@ -19,7 +20,7 @@ function SingleVideo(){
     const { likesData , setLikesData } = useLikes();
     const { setHistoryData }  = useHistory();
     const { isAuth } = useAuth();
-
+     
     useEffect(() => {
         (async () => {
             try{
@@ -107,7 +108,7 @@ function SingleVideo(){
                                         </div>
                                     }
                                      
-                                    <div className='single-video-title-icons'>
+                                    <div className='single-video-title-icons' onClick={ () => setModal(!modal)}>
                                         <span className='material-icons-outlined'>playlist_add</span>
                                         Add to Playlist
                                         
@@ -136,7 +137,8 @@ function SingleVideo(){
             </div>
             
         </div>
-        <PlaylistModal/>
+        { modal &&     <PlaylistModal modal = { modal} setmodal={setModal} />
+        }
         </>
     )
 }
