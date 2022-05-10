@@ -37,14 +37,17 @@ function SingleVideo(){
         const  data  =  await combinedService("post" , "/api/user/watchlater" , isAuth.token , video );
         setWatchLaterData(data.watchlater);
     }
+    
     const removeFromWatchLater = async() => {
         const  data  =  await combinedService("delete" , "/api/user/watchlater" , isAuth.token , video );
         setWatchLaterData(data.watchlater);
     }
+
     const addToLikes = async() => {
         const  data  =  await combinedService("post" , "/api/user/likes" , isAuth.token , video );
         setLikesData(data.likes);
     }
+
     const removeFromLikes = async() => {
         const  data  =  await combinedService("delete" , "/api/user/likes" , isAuth.token , video );
         setLikesData(data.likes);

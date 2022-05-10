@@ -4,6 +4,8 @@ import { useAuth, usePlaylists } from '../../context';
 import { createPlaylistService } from '../../services/playlistServices/createPlaylistService';
 import { SET_PLAYLISTS, SET_SINGLE_PLAYLIST } from '../../constants';
 import { addVideoService } from '../../services/playlistServices/addVideoService';
+import { removeVideoService } from '../../services/playlistServices/removeVideoService';
+
 
 function PlaylistModal({ modal , setmodal , video }){
 
@@ -21,6 +23,11 @@ function PlaylistModal({ modal , setmodal , video }){
         playlistDispatch({ type:SET_SINGLE_PLAYLIST , payload:data.playlist})
     }
 
+    const removeVideoFromPlaylist = async( playlistid ) => {
+        const { data } = await removeVideoService(playlistid , video._id, isAuth.token);
+        playlistDispatch({ type:SET_SINGLE_PLAYLIST , payload:data.playlist})
+    }
+    
     return (
         <div className="playlist-modal-container" onClick={ (e) =>  e.stopPropagation() }>
             <div className='playlist-modal-content'>
@@ -32,15 +39,27 @@ function PlaylistModal({ modal , setmodal , video }){
                     
                 </div>
                 <hr className='devider'/>
-           
+
                 <div className='playlist-modal-body'>
                     { playlistState && playlistState.map( (playlist) => {
                         return (
                             <div key={playlist._id}>
-                                <input type='checkbox' id={playlist._id } onChange ={ () => addVideoToPlaylist( playlist._id ) } />
-                                <label htmlFor={playlist._id}> { playlist.title }</label>
+                                {console.log(playlist)}
+                                <input 
+                                type='checkbox'
+                                id={playlist._id } 
+                                checked={ playlist.videos.some( (vid) => vid._id === video._id ) }
+                                onChange ={ 
+                                    (e) => {
+                                        console.log(e.target.checked)
+                                        e.target.checked 
+                                        ? addVideoToPlaylist( playlist._id )
+                                        : removeVideoFromPlaylist( playlist._id ) 
+                                    } 
+                                    } />
+                                <label htmlFor={playlist._id}> { playlist.title } </label>
                             </div>
-                        )
+                        )   
                         })
                     }
                 </div>
