@@ -1,6 +1,6 @@
 import './playlistModal.css'
 import { useState } from 'react';
-import { useAuth, usePlaylists, useVideo } from '../../context';
+import { useAuth, usePlaylists } from '../../context';
 import { createPlaylistService } from '../../services/playlistServices/createPlaylistService';
 import { SET_PLAYLISTS, SET_SINGLE_PLAYLIST } from '../../constants';
 import { addVideoService } from '../../services/playlistServices/addVideoService';
@@ -18,7 +18,6 @@ function PlaylistModal({ modal , setmodal , video }){
 
     const addVideoToPlaylist = async( playlistid ) => {
         const { data } = await addVideoService(playlistid , video , isAuth.token);
-        console.log(data , "data in modal")
         playlistDispatch({ type:SET_SINGLE_PLAYLIST , payload:data.playlist})
     }
 
