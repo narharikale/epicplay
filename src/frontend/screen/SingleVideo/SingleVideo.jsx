@@ -14,7 +14,7 @@ function SingleVideo(){
     const [video , setVideo] = useState("");
     const [modal , setModal] = useState(false);
     const { title , channel , channelAvtar , views , createdAt , description} = video ;
-    const { id } = useParams();
+    const { videoId } = useParams();
     const { videos } = useVideo();
     const { watchLaterData , setWatchLaterData }  = useWatchLater();
     const { likesData , setLikesData } = useLikes();
@@ -24,13 +24,13 @@ function SingleVideo(){
     useEffect(() => {
         (async () => {
             try{
-                const { data } = await axios.get(`/api/video/${id}`);
+                const { data } = await axios.get(`/api/video/${videoId}`);
                 setVideo(data.video);
             }catch(error){
                 console.error(error)
             }
         })();
-      }, [id]);
+      }, [videoId]);
     
       
     const saveToWatchLater = async() => {
@@ -84,7 +84,7 @@ function SingleVideo(){
                                 </div>
                                 <div className='d-flex gap-1 '>
 
-                                    { likesData.find( singlevideo => singlevideo._id === id) ? 
+                                    { likesData.find( singlevideo => singlevideo._id === videoId) ? 
                                         <div className='single-video-title-icons' onClick={ removeFromLikes }>
                                             <span className="material-icons">thumb_up</span> 
                                             Unlike
@@ -96,7 +96,7 @@ function SingleVideo(){
                                         </div>
                                     }
 
-                                    { watchLaterData.find( singlevideo => singlevideo._id === id) ? 
+                                    { watchLaterData.find( singlevideo => singlevideo._id === videoId) ? 
                                         <div className='single-video-title-icons' onClick={ removeFromWatchLater }>
                                             <span className="material-icons">watch_later</span>
                                             Remove
@@ -119,7 +119,7 @@ function SingleVideo(){
                             <div className='single-video-details d-flex gap-1'>
                                 <img src={ channelAvtar } alt="channel img" className='br-round channel-img' />
                                 <div>
-                                    <div>{channel}</div>
+                                    <div>{ channel }</div>
                                     <p className='font-size-sm'>{description}</p>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ function SingleVideo(){
                     <div className='video-recomendation-list-container'>
                         { videos.map((video) => {
                             return (
-                                <SmallVideoCard key={video._id} video={video}/>
+                                <SmallVideoCard key={ video._id } video={ video }/>
                             )
                         })
                         }
@@ -137,7 +137,7 @@ function SingleVideo(){
             </div>
             
         </div>
-        { modal &&     <PlaylistModal modal = { modal} setmodal={setModal} />
+        { modal && <PlaylistModal modal={ modal } setmodal={ setModal }  video={ video }/>
         }
         </>
     )
