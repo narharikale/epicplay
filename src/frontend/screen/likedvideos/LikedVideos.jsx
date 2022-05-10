@@ -28,7 +28,7 @@ function LikedVideos(){
                         return (
                             <SmallVideoCard key={index} video={ video }/>
                         )
-                    }) : <div> this is empty</div>
+                    }) : <div className="d-flex w-100-per font-size-md"> No liked videos yet</div>
 
                     }
                 </div>

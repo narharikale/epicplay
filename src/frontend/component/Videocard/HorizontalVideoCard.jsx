@@ -5,6 +5,7 @@ import { timeFormatter } from '../../utils/timeFormatter';
 import { useNavigate } from 'react-router-dom';
 import { combinedService } from '../../services/combinedServices';
 import { useAuth, useWatchLater } from '../../context';
+import { PlaylistModal } from '../PlaylistModal/PlaylistModal';
 function HorizontalVideoCard ({ video }) {
 
   const { _id , title , channel , channelAvtar , views , createdAt } = video ;
@@ -12,8 +13,9 @@ function HorizontalVideoCard ({ video }) {
   const navigate = useNavigate();
   const { watchLaterData , setWatchLaterData }  = useWatchLater()
   const [ moreModal , setMoreModal ] = useState(false);
+  const [ modal , setModal ] = useState(false);
 
-  
+
   const saveToWatchLater = async(e) => {
       e.stopPropagation()
       const  data  =  await combinedService("post" , "/api/user/watchlater" , isAuth.token , video );
@@ -56,12 +58,20 @@ function HorizontalVideoCard ({ video }) {
 
             }
             
-            <div className='more-modal-item'>
+            <div className='more-modal-item' onClick={ (e) =>{ 
+                e.stopPropagation()
+                setModal(!modal)
+                }}>
               <span className="material-icons-outlined">playlist_add</span>
                 Add to Playlist
             </div>
           </div>
         }
+        
+        { modal && <PlaylistModal modal={ modal } setmodal={ setModal } video={ video } />
+        }
+
+        
       </div>
     )
 }

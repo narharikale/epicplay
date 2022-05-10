@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes , } from "react-router-dom";
 import Mockman from 'mockman-js';
-import { Home , Signin , Signup , Explore, NotFound, SingleVideo, WatchLater, LikedVideos, History } from "../screen";
+import { Home , Signin , Signup , Explore, NotFound, SingleVideo, WatchLater, LikedVideos, History, Playlist } from "../screen";
 import { useAuth } from '../context'
 import { RequireAuth } from "../component";
 
@@ -12,7 +12,7 @@ function Routers(){
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/explore" element={<Explore/>}/>
-            <Route path="/explore/:id" element={<SingleVideo/>} />
+            <Route path="/explore/:videoId" element={<SingleVideo/>} />
             
             { !isAuth.status &&  (
                 <>
@@ -35,6 +35,12 @@ function Routers(){
             <Route path="/history" element={ 
                 <RequireAuth>
                     <History/>
+                </RequireAuth> 
+            }/>
+
+            <Route path="/playlist/:playlistId" element={ 
+                <RequireAuth>
+                    <Playlist/>
                 </RequireAuth> 
             }/>
             

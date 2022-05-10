@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Sidebar, SmallVideoCard } from '../../component';
+import { PlaylistModal, Sidebar, SmallVideoCard } from '../../component';
 import '../Explore/Explore.css';
 import "./singlevideo.css";
 import ReactPlayer from "react-player/youtube";
@@ -12,38 +12,42 @@ import { combinedService } from '../../services/combinedServices';
 
 function SingleVideo(){
     const [video , setVideo] = useState("");
+    const [modal , setModal] = useState(false);
     const { title , channel , channelAvtar , views , createdAt , description} = video ;
-    const { id } = useParams();
+    const { videoId } = useParams();
     const { videos } = useVideo();
     const { watchLaterData , setWatchLaterData }  = useWatchLater();
     const { likesData , setLikesData } = useLikes();
     const { setHistoryData }  = useHistory();
     const { isAuth } = useAuth();
-
+     
     useEffect(() => {
         (async () => {
             try{
-                const { data } = await axios.get(`/api/video/${id}`);
+                const { data } = await axios.get(`/api/video/${videoId}`);
                 setVideo(data.video);
             }catch(error){
                 console.error(error)
             }
         })();
-      }, [id]);
+      }, [videoId]);
     
       
     const saveToWatchLater = async() => {
         const  data  =  await combinedService("post" , "/api/user/watchlater" , isAuth.token , video );
         setWatchLaterData(data.watchlater);
     }
+    
     const removeFromWatchLater = async() => {
         const  data  =  await combinedService("delete" , "/api/user/watchlater" , isAuth.token , video );
         setWatchLaterData(data.watchlater);
     }
+
     const addToLikes = async() => {
         const  data  =  await combinedService("post" , "/api/user/likes" , isAuth.token , video );
         setLikesData(data.likes);
     }
+
     const removeFromLikes = async() => {
         const  data  =  await combinedService("delete" , "/api/user/likes" , isAuth.token , video );
         setLikesData(data.likes);
@@ -55,6 +59,7 @@ function SingleVideo(){
     }
 
     return (
+        <>
         <div className="explore-main-container">
             <div className="explore-side-container">
                 <Sidebar/>
@@ -82,7 +87,7 @@ function SingleVideo(){
                                 </div>
                                 <div className='d-flex gap-1 '>
 
-                                    { likesData.find( singlevideo => singlevideo._id === id) ? 
+                                    { likesData.find( singlevideo => singlevideo._id === videoId) ? 
                                         <div className='single-video-title-icons' onClick={ removeFromLikes }>
                                             <span className="material-icons">thumb_up</span> 
                                             Unlike
@@ -94,7 +99,7 @@ function SingleVideo(){
                                         </div>
                                     }
 
-                                    { watchLaterData.find( singlevideo => singlevideo._id === id) ? 
+                                    { watchLaterData.find( singlevideo => singlevideo._id === videoId) ? 
                                         <div className='single-video-title-icons' onClick={ removeFromWatchLater }>
                                             <span className="material-icons">watch_later</span>
                                             Remove
@@ -106,9 +111,10 @@ function SingleVideo(){
                                         </div>
                                     }
                                      
-                                    <div className='single-video-title-icons'>
+                                    <div className='single-video-title-icons' onClick={ () => setModal(!modal)}>
                                         <span className='material-icons-outlined'>playlist_add</span>
                                         Add to Playlist
+                                        
                                     </div> 
                                 </div>
                             </div>
@@ -116,7 +122,7 @@ function SingleVideo(){
                             <div className='single-video-details d-flex gap-1'>
                                 <img src={ channelAvtar } alt="channel img" className='br-round channel-img' />
                                 <div>
-                                    <div>{channel}</div>
+                                    <div>{ channel }</div>
                                     <p className='font-size-sm'>{description}</p>
                                 </div>
                             </div>
@@ -125,14 +131,18 @@ function SingleVideo(){
                     <div className='video-recomendation-list-container'>
                         { videos.map((video) => {
                             return (
-                                <SmallVideoCard key={video._id} video={video}/>
+                                <SmallVideoCard key={ video._id } video={ video }/>
                             )
                         })
                         }
                     </div>
                 </div>
             </div>
+            
         </div>
+        { modal && <PlaylistModal modal={ modal } setmodal={ setModal }  video={ video }/>
+        }
+        </>
     )
 }
 
