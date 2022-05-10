@@ -1,5 +1,5 @@
 import { createContext, useContext , useReducer } from "react"
-import { filterReducer } from '../Reducers/filterReducer'
+import { filterReducer } from '../reducers/filterReducer'
 
 const FilterContext = createContext(null);
 
