@@ -1,11 +1,11 @@
 import { createContext , useContext ,useReducer } from 'react' ; 
-import { playlistReducer } from '../reducers/playlistReducer';
+import { playlistReducer } from '../reducer/playlist-reducer';
 
 const playlistContext = createContext();
 
 function PlaylistProvider({ children }) {
 
-    const [ playlistState , playlistDispatch ] = useReducer(playlistReducer , [])
+    const [ playlistState , playlistDispatch ] = useReducer( playlistReducer , [])
     return (
             <playlistContext.Provider value={{playlistState , playlistDispatch }}>
                 {children}
