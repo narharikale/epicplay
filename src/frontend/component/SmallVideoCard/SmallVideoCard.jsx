@@ -1,6 +1,6 @@
 import "./smallvideo.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { useState , useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState , } from "react";
 import { numFormatter } from "../../utils/numFormatter";
 import { timeFormatter } from "../../utils/timeFormatter";
 import { MoreModal } from "../MoreModal/MoreModal";
