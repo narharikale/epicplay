@@ -47,7 +47,7 @@
 .eplaybtn{
     padding: 5px 0.625rem;
     border: 1px solid var(--color-foreground-accent-1);
-    width: 5.625rem;
+    width:fit-content;
     color: var(--color-foreground);
 
 }
@@ -55,6 +55,7 @@
 .eplaybtn-primary{
     background-color: #e32832;
     background-image: linear-gradient(266deg, #BF1922 0%,#92131a  74%);
+    color: white;
 }
 .header-right-container{
     display: flex;
@@ -62,13 +63,45 @@
 }
 
 
+.icon-btn{
+    border-radius: 50%;
+    border: 0;
+    display: flex;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    justify-content: center;
+    color: var(--color-foreground);
+}
+
+.icon-btn:hover{
+    color: var(--color-foreground-accent-1 );
+    background-color: var(--color-background-accent);
+}
+
+.toggle-mode{
+    transition:cubic-bezier(0.6, -0.28, 0.735, 0.045) .3s;
+    transform: rotate(50deg);
+}
+
+.toggle-mode1{
+    transition:cubic-bezier(0.6, -0.28, 0.735, 0.045) .3s;
+    transform: rotate(0deg);
+}
+
+.menu-btn{
+    display: none;
+}
+
 
 @media screen and (max-width: 40em){
     
     .searchbar-container{
         display: none;
     }
-
+    .menu-btn{
+        display: block;
+    }
 }
  
  @media screen and (min-width: 40.063em) and (max-width: 64em) {

@@ -23,12 +23,13 @@
 
 @media screen and (max-width: 40em){
     
+    .sidebar-container{
+        z-index: 5;
+    }
     .sidebar-list{
         position:fixed;
         top: 4rem;
-        z-index: 1 ;
         background-color: var(--color-background);
-        display: none;
     }
 
 }

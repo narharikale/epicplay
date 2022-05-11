@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
-import { usePlaylists } from "../../context";
+import { usePlaylists, useSidebar } from "../../context";
 import "./Sidebar.css";
 
 function Sidebar() {
 
   const { playlistState  } = usePlaylists();
-  
+  const { sidebarDisplay } = useSidebar();
+
   return (
-    <aside className="sidebar-container">
+    <aside style={ { display:sidebarDisplay ? "block" : 'none' } } className="sidebar-container">
       <div className="sidebar-list">
         <NavLink to="/" className="sidebar-list-item" >
             <span className="material-icons-outlined">home</span> 

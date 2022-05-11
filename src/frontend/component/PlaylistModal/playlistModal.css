@@ -57,6 +57,6 @@
 }
 
 .devider{
-    border: .5px solid #4e4f50;
+    border: 1px solid var(--color-background-accent-3);
     outline: 0;
 }

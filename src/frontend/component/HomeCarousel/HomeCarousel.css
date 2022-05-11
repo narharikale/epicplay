@@ -21,7 +21,10 @@
     border: 0;
     filter: opacity(0.6);
 }
-
+.carousel .slide .slider-img-opa{
+    border: 0;
+    filter: opacity(1);
+}
 .legend .eplaybtn {
     width: -moz-fit-content;
     width: fit-content;
@@ -34,6 +37,10 @@
         object-fit: cover;
         height: 31.5rem;
    }
+   .slider-img-opa{
+    object-fit: cover;
+    height: 31.5rem;
+}
    .carousel .slide #legend .title{ 
         font-size: 1.2rem;
         word-spacing: 2px;

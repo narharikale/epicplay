@@ -4,20 +4,22 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
-import { useVideo } from "../../context";
+import { useSidebar, useVideo } from "../../context";
 
 
 function Slider() {
-  const { videos } = useVideo()
+  const { videos } = useVideo();
+  const { windowWidth } = useSidebar();
+  
   return (
     <>
     
       <Swiper
-        slidesPerView={5}
+        slidesPerView={windowWidth > 616 ? 5 : windowWidth > 450 ? 3 : 1 }
         spaceBetween={25}
-        slidesPerGroup={5}
+        slidesPerGroup={windowWidth > 616 ? 5 : windowWidth > 450 ? 3 : 1 }
         loop={true}
-        loopFillGroupWithBlank={true}
+        
         pagination={{
           clickable: true,
         }}

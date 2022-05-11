@@ -11,6 +11,7 @@
     --color-background: #18191A ;
     --color-background-accent-1:#242526;
     --color-background-accent-2:#3A3B3C;
+    --color-background-accent-3:#414344d9;
     --color-foreground:#ffffff;
     --color-foreground-accent-1:#B0B3B8;
 }
@@ -19,6 +20,7 @@
     --color-background: #ffffff;
     --color-background-accent-1: #f0f0ed;
     --color-background-accent-2: #d8d8d5;
+    --color-background-accent-3:#c3c3bfb8;
     --color-foreground: #18191A;
     --color-foreground-accent-1: #242526;
 }
@@ -44,4 +46,3 @@ button{
 h2, h3, h4, h1, h5, h6 {
     font-family: 'Roboto Condensed', sans-serif;
 }
-
