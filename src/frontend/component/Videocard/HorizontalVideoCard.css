@@ -48,22 +48,6 @@
     font-size: 13px;
 }
 
-.more-modal{
-    position: absolute;
-    background-color: var(--color-background-accent-2);
-    padding: .5rem;
-    bottom: -15px;
-    right: 32px;
-    border-radius: 3px;
-    z-index: 1;
-}
-
-.more-modal-item{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding:4px;
-}
 
 @media screen and (max-width: 40em){
     

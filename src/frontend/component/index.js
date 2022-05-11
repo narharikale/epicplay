@@ -7,3 +7,4 @@ export { Sidebar } from './Sidebar/Sidebar';
 export { HorizontalVideoCard } from './Videocard/HorizontalVideoCard';
 export { SmallVideoCard } from "./SmallVideoCard/SmallVideoCard";
 export { PlaylistModal } from "./PlaylistModal/PlaylistModal";
+export { MoreModal } from "./MoreModal/MoreModal"

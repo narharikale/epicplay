@@ -3,29 +3,17 @@ import { useState } from 'react'
 import { numFormatter } from '../../utils/numFormatter';
 import { timeFormatter } from '../../utils/timeFormatter';
 import { useNavigate } from 'react-router-dom';
-import { combinedService } from '../../services/combinedServices';
-import { useAuth, useWatchLater } from '../../context';
-import { PlaylistModal } from '../PlaylistModal/PlaylistModal';
-function HorizontalVideoCard ({ video }) {
+import { MoreModal } from '../MoreModal/MoreModal';
 
+
+
+function HorizontalVideoCard ({ video }) {
   const { _id , title , channel , channelAvtar , views , createdAt } = video ;
-  const { isAuth }  = useAuth();
   const navigate = useNavigate();
-  const { watchLaterData , setWatchLaterData }  = useWatchLater()
   const [ moreModal , setMoreModal ] = useState(false);
   const [ modal , setModal ] = useState(false);
 
 
-  const saveToWatchLater = async(e) => {
-      e.stopPropagation()
-      const  data  =  await combinedService("post" , "/api/user/watchlater" , isAuth.token , video );
-      setWatchLaterData(data.watchlater);
-  } 
-  const removeFromWatchLater = async(e) => {
-    e.stopPropagation()
-    const  data  =  await combinedService("delete" , "/api/user/watchlater" , isAuth.token , video );
-    setWatchLaterData(data.watchlater);
-} 
   return(
       <div className='video-card' onClick={() => navigate(`/explore/${_id}`)} >
         <img src={`https://img.youtube.com/vi/${_id}/maxresdefault.jpg`} alt="img" height='100%' width='100%'/>
@@ -44,33 +32,9 @@ function HorizontalVideoCard ({ video }) {
             <span className="material-icons-outlined">more_vert</span>
           </div>
         </div>
-        { moreModal && 
-          <div className='more-modal'>
-            { watchLaterData.find( singlevideo => singlevideo._id === _id) ? 
-              <div className='more-modal-item' onClick={ (e) =>  removeFromWatchLater(e) }>
-                <span className='material-icons'>watch_later</span>
-                Remove from Watch Later
-              </div> : 
-              <div className='more-modal-item' onClick={ (e) =>  saveToWatchLater(e) }>
-                <span className='material-icons-outlined'>watch_later</span>
-                Save to Watch Later
-              </div>
-
-            }
-            
-            <div className='more-modal-item' onClick={ (e) =>{ 
-                e.stopPropagation()
-                setModal(!modal)
-                }}>
-              <span className="material-icons-outlined">playlist_add</span>
-                Add to Playlist
-            </div>
-          </div>
+        { moreModal && <MoreModal value = {{ modal , setModal , video }} />
+          
         }
-        
-        { modal && <PlaylistModal modal={ modal } setmodal={ setModal } video={ video } />
-        }
-
         
       </div>
     )
