@@ -33,7 +33,6 @@ function HorizontalVideoCard ({ video }) {
           </div>
         </div>
         { moreModal && <MoreModal value = {{ modal , setModal , video }} />
-          
         }
         
       </div>

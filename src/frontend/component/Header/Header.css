@@ -47,7 +47,7 @@
 .eplaybtn{
     padding: 5px 0.625rem;
     border: 1px solid var(--color-foreground-accent-1);
-    width: 5.625rem;
+    width:fit-content;
     color: var(--color-foreground);
 
 }

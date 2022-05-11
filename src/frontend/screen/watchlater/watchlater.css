@@ -19,21 +19,26 @@
 .morepages-title{
     background-color: #3a3b3c6e;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: .5rem;
+    justify-content: space-between;
+    padding: .5rem 1rem;
 }
 
-.morepages-title div {
-    gap: 6px;
+.morepages-title button {
+    font-size: 13px;
 }
 
+.icon-btn{
+    border-radius: 50%;
+    padding: 5px;
+}
+.icon-btn:hover{
+    background-color: var(--color-background);
+}
 
 @media screen and (max-width: 64em){
     
     .morepages-container{
         flex-direction: column;
     }
-    
 
 }

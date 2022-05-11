@@ -1,16 +1,18 @@
 import "./smallvideo.css";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState , useEffect } from "react";
 import { numFormatter } from "../../utils/numFormatter";
 import { timeFormatter } from "../../utils/timeFormatter";
 import { MoreModal } from "../MoreModal/MoreModal";
 
-
 function SmallVideoCard( { video } ){
     const { _id , title , channel , views , createdAt } = video ;
     const navigate = useNavigate();
+    
     const [ moreModal , setMoreModal ] = useState(false);
     const [ modal , setModal ] = useState(false);
+
+   
 
     return (
         <div className='small-video-card' onClick={() => navigate(`/explore/${_id}`)} >
@@ -30,8 +32,8 @@ function SmallVideoCard( { video } ){
                 <div className='video-card-channel-title'>{  numFormatter(views) } | { timeFormatter(Date.parse(createdAt)) } ago</div>
             </div>
                         
-            { moreModal && <MoreModal value = {{ modal , setModal , video }} />
-          
+            { 
+                moreModal && <MoreModal value = {{ modal , setModal , video }} />          
             }
         
       </div>

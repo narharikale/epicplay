@@ -44,14 +44,13 @@ function PlaylistModal({ modal , setmodal , video }){
                     { playlistState && playlistState.map( (playlist) => {
                         return (
                             <div key={playlist._id}>
-                                {console.log(playlist)}
+                                
                                 <input 
                                 type='checkbox'
                                 id={playlist._id } 
                                 checked={ playlist.videos.some( (vid) => vid._id === video._id ) }
                                 onChange ={ 
                                     (e) => {
-                                        console.log(e.target.checked)
                                         e.target.checked 
                                         ? addVideoToPlaylist( playlist._id )
                                         : removeVideoFromPlaylist( playlist._id ) 

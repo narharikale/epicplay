@@ -1,12 +1,16 @@
 import { combinedService } from '../../services/combinedServices';
-import { useAuth, useWatchLater } from '../../context';
+import { useAuth, usePlaylists, useWatchLater } from '../../context';
 import './moreModal.css';
 import { PlaylistModal } from '../PlaylistModal/PlaylistModal';
-
+import { useParams  , useLocation} from 'react-router-dom';
+import { removeVideoService } from '../../services/playlistServices/removeVideoService';
+import { SET_SINGLE_PLAYLIST } from '../../constants';
 
 function MoreModal ({ value }){
     const { modal , setModal , video } = value;
-   
+    const { playlistDispatch }  = usePlaylists();
+    const { playlistId }  = useParams();
+    const location = useLocation();
     const { isAuth }  = useAuth();
     const { watchLaterData , setWatchLaterData }  = useWatchLater()
 
@@ -21,6 +25,10 @@ function MoreModal ({ value }){
         setWatchLaterData(data.watchlater);
     } 
 
+    const removeVideoFromPlaylist = async(  ) => {
+        const { data } = await removeVideoService(playlistId , video._id, isAuth.token);
+        playlistDispatch({ type:SET_SINGLE_PLAYLIST , payload:data.playlist})
+    }
 
     return (
         <div className='more-modal'>
@@ -43,6 +51,16 @@ function MoreModal ({ value }){
                 Add to Playlist
             </div>
             
+           { location.pathname === `/playlist/${playlistId}` 
+                ? <div className='more-modal-item' onClick={ (e) =>{ 
+                    e.stopPropagation()
+                    removeVideoFromPlaylist()
+                    }}>
+                    <span className="material-icons-outlined">delete</span>
+                    Delete from playlist
+                </div>
+                : " "
+           }
             { 
                 modal && <PlaylistModal modal={ modal } setmodal={ setModal } video={ video } />
             }
