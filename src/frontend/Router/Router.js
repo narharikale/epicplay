@@ -13,14 +13,9 @@ function Routers(){
             <Route path="/" element={<Home/>}/>
             <Route path="/explore" element={<Explore/>}/>
             <Route path="/explore/:videoId" element={<SingleVideo/>} />
-            
-            { !isAuth.status &&  (
-                <>
-                    <Route path="/signin" element={<Signin/>}/>
-                    <Route path="/signup" element={<Signup/>}/>
-                </>
-            )}
-
+            <Route path="/signin" element={<Signin/>}/>
+            <Route path="/signup" element={<Signup/>}/>
+          
             <Route path="/watchlater" element={ 
                 <RequireAuth>
                     <WatchLater/>

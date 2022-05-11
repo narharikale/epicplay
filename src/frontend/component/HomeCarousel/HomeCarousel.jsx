@@ -2,6 +2,7 @@ import './HomeCarousel.css'
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../context';
 
 const sliderData = [
     {
@@ -25,13 +26,13 @@ const sliderData = [
 ]
 
 function HomeCarousel() {
-
+  const { theme } = useTheme();
 return (
   <Carousel autoPlay showThumbs={false} >
     { sliderData.map((banner) => {
         return(
           <div key={banner.id}>
-              <img alt="no img" src={banner.img} className="slider-img"/>
+              <img alt="no img" src={banner.img} className={`${ theme==='dark'? 'slider-img':'slider-img-opa' }`}/>
               <div className="legend" id='legend'>
                 <div className='legend-container'>
                   <div>

@@ -17,7 +17,7 @@
     flex-grow: 1;
 }
 .morepages-title{
-    background-color: #3a3b3c6e;
+    background-color: var(--color-background-accent-3);
     display: flex;
     justify-content: space-between;
     padding: .5rem 1rem;
