@@ -5,12 +5,12 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { useSidebar, useVideo } from "../../context";
-
+import { useNavigate } from 'react-router-dom'
 
 function Slider() {
   const { videos } = useVideo();
   const { windowWidth } = useSidebar();
-  
+  const navigate = useNavigate()
   return (
     <>
     
@@ -31,7 +31,11 @@ function Slider() {
        { videos.map((video) => {
            return(
             <SwiperSlide key={ video._id }>
-                 <img key={ video._id } src={`https://i.ytimg.com/vi_webp/${video.thumbnail_id}/movieposter.webp`} alt="broken" /> 
+                 <img
+                  onClick={() => navigate(`/explore/${video._id}`)}  key={ video._id } 
+                  src={`https://i.ytimg.com/vi_webp/${video.thumbnail_id}/movieposter.webp`} alt="broken" 
+                  className="cursor-pointer"
+                  /> 
             </SwiperSlide>
            )
        })
