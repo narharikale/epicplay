@@ -12,7 +12,11 @@ function Header(){
 
   const logoutHandler = () => {
       localStorage.removeItem(AUTH_TOKEN)
-      setIsAuth({status:false})
+      setIsAuth(
+      {
+        status:false ,
+        token:null
+      })
   }
   const navigate = useNavigate();
   const location = useLocation();
