@@ -38,14 +38,15 @@ function Header(){
         </div>
         
 
-        <div className="d-flex searchbar-container">
+        {/* <div className="d-flex searchbar-container">
           <div className="searchbar">
             <button className="d-flex">
               <span className="material-icons-sharp">search</span>
             </button>
             <input type="text" />
           </div>
-        </div>
+        </div> */}
+
         <div className="header-right-container">
           <button className="icon-btn" onClick={themeToggle}>
             {" "}
