@@ -1,0 +1,3 @@
+
+
+Removed searchbar from header
