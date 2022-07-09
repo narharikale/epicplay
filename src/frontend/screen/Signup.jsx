@@ -100,7 +100,7 @@ function Signup() {
                     <button type="submit"  className="auth-btn auth-primary-btn  font-size-regular w-100-per">
                         Create New Account
                     </button> 
-                    <Link to='/login' className="color-gray-500 d-flex gap-sm">
+                    <Link to='/signin' className="color-gray-500 d-flex gap-sm">
                         Alreday have account<span className="material-icons">login</span>{" "}
                     </Link>
                 </form>
