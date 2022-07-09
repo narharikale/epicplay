@@ -1,5 +1,6 @@
 .logo{
     width: 8.75rem;
+    cursor: pointer;
 }
 .header{
     padding: .5rem 1rem;

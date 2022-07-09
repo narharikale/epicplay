@@ -63,14 +63,6 @@ import { authService } from "../services/authService";
                     </div>
                     { authErr ? <small className="color-red-600 bg-red-200 p-alert w-100-per">&#9888; Some error occurred </small> :null }
 
-                    <div className="d-flex w-100-per justify-between">
-                        <label htmlFor="rememberMe">
-                            <input
-                                id="rememberMe"
-                                type="checkbox"/>
-                                Remember me
-                        </label>
-                    </div>
 
                     <button
                         type="submit"
@@ -78,7 +70,7 @@ import { authService } from "../services/authService";
                         >Sign in</button>
                     <button
                         className="auth-btn auth-secondary-btn font-size-regular w-100-per"
-                        onClick={(e) => signinHandler('adarshbalika@gmail.com', 'adarshBalika123')} >
+                        onClick={(e) => signinHandler('Johnrao@gmail.com', 'Johnrao123')} >
                         Login as a Guest</button>
                     <Link to='/signup' className="color-gray-500 d-flex gap-sm">
                         Create new account<span className="material-icons">arrow_forward</span>

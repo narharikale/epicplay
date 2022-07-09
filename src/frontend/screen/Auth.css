@@ -8,6 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 4.375rem;
+  
 }
 .auth-form{
   display: flex;
@@ -15,6 +16,7 @@
   align-items: center;
   justify-content: center;
   width: 25rem;
+  margin-bottom: 3rem;
   gap: 14px;
   padding: 1rem 2rem;
   background-color: var(--color-background-accent);
