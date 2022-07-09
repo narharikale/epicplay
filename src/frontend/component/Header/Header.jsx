@@ -1,13 +1,15 @@
 import "./Header.css";
 import { Logo } from "../Logo/Logo";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth, useSidebar, useTheme } from "../../context";
+import { useAuth, useFilter, useSidebar, useTheme } from "../../context";
 import { AUTH_TOKEN } from "../../constants";
 
 function Header(){
   const { isAuth , setIsAuth } = useAuth();
   const { themeToggle, theme } = useTheme();
   const { sidebarDisplay , setSidebarDisplay } = useSidebar();
+  const { setSearchQuery } = useFilter()
+
 
 
   const logoutHandler = () => {
@@ -32,20 +34,23 @@ function Header(){
             }
           
           </div>
-          <div className="logo">
+          <div className="logo" onClick={ () =>  navigate('/') }>
             <Logo />
           </div>
         </div>
         
 
-        {/* <div className="d-flex searchbar-container">
+        <div className="d-flex searchbar-container">
           <div className="searchbar">
             <button className="d-flex">
               <span className="material-icons-sharp">search</span>
             </button>
-            <input type="text" />
+            <input type="text" 
+              onChange={(e)=> {
+              navigate('/explore')
+              setSearchQuery(e.target.value)}} />
           </div>
-        </div> */}
+        </div>
 
         <div className="header-right-container">
           <button className="icon-btn" onClick={themeToggle}>

@@ -7,7 +7,7 @@ import { getFilterdVideos } from "../../utils/filteredVideos";
 
 function Explore(){
     const { videos , categories } = useVideo();
-    const { filterDispatch } = useFilter();
+    const { filterDispatch , searchQuery } = useFilter();
     const [ selectedCategory , setSelectedCategory ]  = useState('All');
     
     const filterHandler = ( categoryname ) => {
@@ -16,8 +16,12 @@ function Explore(){
     }   
 
 
-    const videosList = getFilterdVideos(videos , selectedCategory )
+    let videosList = getFilterdVideos(videos , selectedCategory )
 
+    videosList = videosList?.filter((video) => {
+        return video.title.includes(searchQuery?.toUpperCase())
+    })
+    
     return (
         <div className="explore-main-container">
             <div className="explore-side-container">
